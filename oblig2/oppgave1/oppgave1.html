@@ -1,0 +1,47 @@
+<!doctype HTML>
+
+<!--Lag et skjema for å opprette en bruker på en nettside bestående av felter for ønsket
+brukernavn, passord og en registrer knapp. Når man trykker knappen skal programmet sjekke
+om man har fylt ut feltene.
+Om ett eller begge feltene ikke inneholder noe skal du gi brukeren beskjed om dette.
+Om feltene er fylt ut skal du takke brukeren for registreringen. -->
+
+<head>
+	<title>Brukerregistrering1</title>
+	<meta charset="utf-8" />
+	<script>
+		window.onload = oppstart;
+
+		function oppstart() {
+			document.getElementById("btnReg").onclick = brukernavnSjekk;
+		}
+
+		function brukernavnSjekk() {
+			var inpNavn = document.getElementById("bNavn").value;
+			var inpPass = document.getElementById("bPassord").value;
+
+			if (inpNavn === "" && inpPass === "") {
+				document.getElementById("utskrift").innerHTML = "Vennligst skriv inn brukernavnet og passordet du ønsker å bruke.";
+			} else if (inpNavn === "") {
+				document.getElementById("utskrift").innerHTML = "Vennligst skriv inn et brukernavn.";
+			} else if (inpPass === "") {
+				document.getElementById("utskrift").innerHTML = "Vennligst skriv inn et passord.";
+			} else {
+				document.getElementById("utskrift").innerHTML = "Takk for at du registrerte deg!"
+			}
+		}
+	</script>
+</head>
+
+<body>
+	Brukernavn:
+	<input type="text" id="bNavn"></input>
+	</br>
+	</br>
+	Passord:
+	<input type="password" id="bPassord"></input>
+	</br>
+	</br>
+	<button id="btnReg">Registrer</button>
+	<p id="utskrift"></p>
+</body>

@@ -1,0 +1,53 @@
+<!doctype HTML>
+
+<!--Lag ferdig en funksjon som sjekker om et tall er innenfor et intervall (returnerer en boolean).
+Lag så 2-3 utskrifter, der denne funksjonen er i bruk.
+function InnenforInterval(tall, fra, til)-->
+
+<head>
+	<title>Oppgave 7</title>
+	<meta charset="utf-8" />
+	<script>
+		window.onload = oppstart;
+
+		function oppstart() {
+			document.getElementById("btnKjor").onclick = kjor;
+			document.getElementById("btnClear").onclick = clear;
+			document.getElementById("btn10x").onclick = tiGanger;
+		}
+
+		function InnenforInterval(tall, fra, til) {
+			if (tall > fra && tall < til) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function kjor() {
+			var utskrift = document.getElementById("utskrift");
+			var rand1 = Math.floor((Math.random() * 100));
+			var rand2 = rand1 + Math.floor((Math.random() * 100)); //sørger for at rand2 aldri er mindre enn rand1, slik at dette ikke skjer -> 71 befinner seg ikke mellom 86 og 52
+			var tall = parseFloat(document.getElementById("txtTall").value);
+			utskrift.innerHTML += "Befinner tallet " + tall + " seg mellom tallene " + rand1 + " og " + rand2 + "? - " + InnenforInterval(tall, rand1, rand2) + "<br />";
+		}
+
+		function tiGanger() {
+			for (i = 0; i < 10; i++) {
+				kjor();
+			}
+		}
+
+		function clear() {
+			utskrift.innerHTML = "";
+		}
+	</script>
+</head>
+
+<body>
+	<p>Sjekk om tallet <input type="number" id="txtTall" style="width:50px" /> befinner seg mellom to tilfeldig genererte tall (0-200).</p>
+	<button id="btnKjor">Kjør</button>
+	<button id="btn10x">Kjør ti ganger</button>
+	<button id="btnClear">Clear</button>
+	<p id="utskrift"></p>
+</body>

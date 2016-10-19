@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<!--Lag to tekstbokser og en knapp. Når man trykker på knappen skal teksten i den første
+tekstboksen skrives ut så mange ganger (linje for linje) som man skrev et tall i den andre
+tekstboksen.-->
+
+<head>
+	<title>Oppgave 6</title>
+	<meta charset="utf-8">
+	<script>
+		window.onload = oppstart;
+
+		function oppstart() {
+			document.getElementById("btnPrint").onclick = print;
+			//document.getElementById("btnPrint").onclick = totaltPrintet;
+		}
+
+		function print() {
+			var tekst;
+			var antall;
+			tekst = document.getElementById("txtText").value;
+			antall = parseInt(document.getElementById("nrAntall").value);
+			for (var i = 0; i < antall; i += 1) {
+				document.getElementById("utskrift").innerHTML += tekst + "</br>";
+			}
+		}
+
+		/*function totaltPrintet() {
+			document.getElementById("total").innerHTML = utskrift.length;
+		}*/
+	</script>
+
+</head>
+
+<body>
+	Tekst: <input type="text" id="txtText">
+	<br/> Antall ganger teksten over skal printes: <input type="number" id="nrAntall">
+	<br/>
+	<button type="button" id="btnPrint">Print</button>
+	<br/>
+	<p id="utskrift"></p>
+	<!--<p id="total"></p>-->
+
+</body>

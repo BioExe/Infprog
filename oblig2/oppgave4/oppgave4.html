@@ -1,0 +1,45 @@
+<!doctype HTML>
+
+<!--Følgende kodebit gir deg en variabel som inneholder hvilken time i døgenet det er (0-23):
+var tid = new Date();
+var timer = tid.getHours();
+
+Lag en nettside som reflekterer hvilken tid på døgnet det er. Dette kan for eksempel være
+meldinger slik som "God morgen", "God ettermiddag", grafikk og bakgrunnsfarge.-->
+
+<head>
+    <title>Oppgave 4</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            var tid = new Date();
+            var t = tid.getHours();
+
+            var NaaTid = "";
+
+            if (t > 0 && t < 6) {
+                NaaTid = "natt";
+            } else if (t >= 6 && t < 9) {
+                NaaTid = "morgen";
+            } else if (t >= 9 && t < 12) {
+                NaaTid = "formiddag";
+            } else if (t >= 12 && t < 18) {
+                NaaTid = "ettermiddag";
+            } else if (t >= 18 && t < 24) {
+                NaaTid = "kveld";
+            } else if (t == 0) {
+                NaaTid = "midnatt";
+            }
+            document.getElementById("txtNaaTid").innerHTML = "Ha en fortreffelig " + NaaTid + "!";
+
+            setTimeout(oppstart, 100);
+        }
+    </script>
+</head>
+
+<body>
+    <p id="txtNaaTid"></p>
+    <p id="txtKlokke"></p>
+</body>

@@ -1,0 +1,162 @@
+<!doctype HTML>
+
+<!--
+Lag en array med noen selvvalgte tilfeldige tall, gjør så følgende med denne:
+ Skriv ut arrayen
+ Skriv ut arrayen baklengs
+ Skriv ut annethvert tall i arrayen
+ Skriv ut de tallene som er mindre enn 10 i arrayen
+ Skriv ut alle partall i arrayen
+ Finn summen av arrayen
+ Finn antall elementer i arrayen
+ Finn gjennomsnittet av arrayen
+ Finn summen av partall i arrayen
+ Finn minste element (la en variabel holde på minste element funnet til nå, mens du går
+gjennom lista, og sjekk hele tiden om denne verdien skal byttes ut med verdien du er
+på)
+ Finn ut om en liste inneholder en bestemt verdi.
+ Finn ut hvor mange forekomster det er av en bestemt verdi.
+-->
+
+<head>
+	<title>Oppgave 1</title>
+	<meta charset="utf-8" />
+</head>
+
+<body>
+	Forlengs:
+	<p id="printForlengs"></p>
+	Baklengs:
+	<p id="printBaklengs"></p>
+	Annenhver:
+	<p id="printAnnenhver"></p>
+	Mindre enn ti:
+	<p id="printMindreEnnTi"></p>
+	Partall:
+	<p id="printPartall"></p>
+	Sum av alle tallene i arrayen:
+	<p id="printSum"></p>
+	Hvor mange tall der ei arrayen:
+	<p id="printAntall"></p>
+	Gjennomnsnitt av tallene i arrayen:
+	<p id="printGjennomsnitt"></p>
+	Summen av partallene i arrayen:
+	<p id="printSumavptall"></p>
+	Minste tallet i arrayen:
+	<p id="printMinste"></p>
+
+	<input type="text" id="finnes1"></input>
+	<button type="button" id="btnFinnes1">Finnes tallet du skrev inn?</button>
+	<p id="finnesdet1"></p>
+
+	<input type="text" id="finnes2"></input>
+	<button type="button" id="btnFinnes2">Hvor mange ganger finnes talllet du skrev inn?</button>
+	<p id="finnesdet2"></p>
+
+	<script>
+		window.onload = oppstart;
+		var rArray = [54, 5, 2, 4, 9, 75, 13, 5, 2, 7, 18, 19, 69, 37, 8];
+		document.getElementById("btnFinnes1").onclick = finnesdet1;
+		document.getElementById("btnFinnes2").onclick = finnesdet2;
+
+		function oppstart() {
+			//forlengs
+			document.getElementById("printForlengs").innerHTML = rArray;
+
+			reverse(); //reverse trenger egen funksjon med en "temp" array slik at ikke alle arraysene under også blir reversert.
+			//reverse funksjon - lagger ny temp array og reverserer den
+			function reverse() {
+				var temp = [];
+				for (var i = 0; i < rArray.length; i++) {
+					temp.push(rArray[i]);
+				}
+				document.getElementById("printBaklengs").innerHTML = temp.reverse();
+			}
+			//annenhver
+			for (i = 0; i < rArray.length; i += 2) {
+				document.getElementById("printAnnenhver").innerHTML += rArray[i] + ",";
+			}
+			//mindre enn ti
+			for (i = 0; i < rArray.length; i++) {
+				if (rArray[i] < 10) {
+					document.getElementById("printMindreEnnTi").innerHTML += rArray[i] + ",";
+				}
+			}
+			//partall
+			for (i = 0; i < rArray.length; i++) {
+				if (rArray[i] % 2 == 0) {
+					document.getElementById("printPartall").innerHTML += rArray[i] + ",";
+				}
+			}
+			//sum
+			var sum = 0;
+			for (var i = 0; i < rArray.length; i++) {
+				document.getElementById("printSum").innerHTML = sum += rArray[i];
+			}
+			document.getElementById("printAntall").innerHTML = rArray.length;
+			//gjennomsnitt
+			var total = 0;
+			for (var i = 0; i < rArray.length; i++) {
+				var sum = total += rArray[i];
+			}
+			var gjsnitt = (sum / rArray.length);
+			document.getElementById("printGjennomsnitt").innerHTML = Math.round(gjsnitt);
+		}
+		//sum av partall
+		var sumavp = 0
+		for (i = 0; i < rArray.length; i++) {
+			if (rArray[i] % 2 == 0) {
+				sumavp += rArray[i];
+				document.getElementById("printSumavptall").innerHTML = sumavp;
+			}
+		}
+		//minste elementet
+		var min = 10000;
+		for (i = 0; i < rArray.length; i++) {
+			if (min > rArray[i]) {
+				min = rArray[i];
+				document.getElementById("printMinste").innerHTML = min;
+			}
+		}
+
+		function finnesdet1() {
+			var t = document.getElementById("finnes1").value
+			var svar = "";
+			var antFinnes = 0;
+			var b = "";
+
+			for (i = 0; i < rArray.length; i++) {
+				if (parseInt(rArray[i]) == parseInt(t)) {
+					antFinnes++;
+				}
+			}
+			if (antFinnes > 0) {
+				svar = t + " finnes i arrayen."
+			} else {
+				svar = t + " finnes ikke i arrayen."
+			}
+			document.getElementById("finnesdet1").innerHTML = svar;
+		}
+
+		function finnesdet2() {
+			var tallet = document.getElementById("finnes2").value
+			var svar = "";
+			var antFinnes = 0;
+			var b = "";
+			for (i = 0; i < rArray.length; i++) {
+				if (parseInt(rArray[i]) == parseInt(tallet)) {
+					antFinnes++;
+				}
+			}
+			if (antFinnes > 1) {
+				er = "er";
+			}
+			if (antFinnes > 0) {
+				svar = "Tallet " + tallet + " finnes " + antFinnes + " gang" + er + " i arrayen.";
+			} else {
+				svar = "Tallet " + tallet + " finnes ikke i arrayen."
+			}
+			document.getElementById("finnesdet2").innerHTML = svar;
+		}
+	</script>
+</body>

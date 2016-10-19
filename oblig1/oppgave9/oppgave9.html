@@ -1,0 +1,45 @@
+<!doctype HTML>
+
+<!--Lag en nettside som spiller en "beat" som er basert på gjentakelser gjennom
+setInteval og Math.random() (om ønskelig). Benytt lydfiler av instrumenter som
+du finner på nett.-->
+
+<head>
+	<title>Oppgave 9</title>
+	<meta charset="utf-8" />
+	<script>
+		window.onload = oppstart;
+
+		function oppstart() {
+			setInterval(kick, 180);
+			setInterval(cymbal, 500);
+			setInterval(clap, 1000);
+		}
+
+		function kick() {
+			var kick = new Audio('kick.wav');
+			kick.play();
+		}
+
+		function cymbal() {
+			var cymbal = new Audio('cymbal.wav');
+			cymbal.play();
+		}
+
+		function clap() {
+			var clap = new Audio('clap.wav');
+			clap.play();
+		}
+		/*
+		function cymbal() {
+			var cymbal = new Audio('cymbal.wav');
+			cymbal.play();
+		}
+		setTimeout(cymbal, 5000)
+		*/
+	</script>
+</head>
+
+<body>
+	<h1>Unskyld for at du må høre på dette.</h1>
+</body>

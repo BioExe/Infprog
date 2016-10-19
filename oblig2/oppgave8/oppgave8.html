@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+
+<!--Lag følgende grafiske brukergrensesnitt (pengebeløp, antall år og rente):
+Lag deretter en for-løkke i knappens onclick-hendelse, som skriver ut linjer slik.
+Etter 1 år har du xxx penger i banken.
+Etter 2 år har du xxx penger i banken.
+...
+Etter yyy år har du xxx penger i banken.-->
+
+<head>
+    <title>Oppgave 8</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            document.getElementById("btnBeregn").onclick = beregn;
+        }
+
+        function beregn() {
+            var belop = parseFloat(document.getElementById("nrBelop").value);
+            var rente = parseInt(document.getElementById("nrRente").value);
+            var aar = document.getElementById("nrAntAar").value;
+
+            document.getElementById("txtRes").innerHTML = "";
+
+            var aarList = aar;
+
+            for (var i = 1; i <= aarList; i++) {
+                var bGr = belop * rente; //beløp gange rente
+                var tDr = bGr / 100; //produktet av regnestykket over delt på 100 (gir oss rentebeløpet)
+                var sum = tDr + belop; //kvotienten av regnestykker over + det opprinnelige pengebeløpet (gir oss beløpet etter at rentebeløpet er lagt til)
+                belop = sum;
+                document.getElementById("txtRes").innerHTML += "Etter " + i + " år har du " + sum.toFixed(0) + " kroner i banken.\n"; //mulighet til å legge til flere desimaltall ved å endre tallet i "toFixed()"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    Pengebeløp:
+    <input type="number" id="nrBelop" /></br>
+    Antall år:
+    <input type="number" id="nrAntAar" /></br>
+    Rente %:
+    <input type="number" id="nrRente" />
+    <button id="btnBeregn" type="button">Beregn</button>
+    </br>
+    </br>
+    <textarea id="txtRes" style="width:400px; height:300px"></textarea>
+</body>

@@ -1,0 +1,30 @@
+<!doctype HTML>
+<head>
+	<title>Test</title>
+	<meta charset="utf-8" />
+	<script>
+
+		window.onload = oppstart;
+
+		function oppstart() {
+			document.getElementById("btnBeregn").onclick = visSvar;
+		}
+
+		function visSvar() {
+
+			var timer = parseInt(document.getElementById("txtTimer").value);
+			var lonn = parseInt(document.getElementById("txtLonn").value);
+			var sum = timer * lonn;
+
+			document.getElementById("utskrift").innerHTML = sum + " kr";
+		}
+
+	</script>
+</head>
+<body>
+	<!-- Her kommer informasjonen -->
+	Ant. Timer: <input type="text" id="txtTimer" /><br />
+	Timelønn: <input type="text" id="txtLonn" />
+	<p id="utskrift"></p>
+	<button id="btnBeregn" type="button">Beregn</button>
+</body>

@@ -1,0 +1,62 @@
+<!doctype HTML>
+
+<!--Lag et skjema som lar deg fylle ut en handleliste. Listen skal bestå av varenavnet og
+antall varer. Når du trykker på en knapp skal varen legges til i en <ul>-liste i nettsiden.
+Under listen skal det vises totalt antall varer.-->
+
+<head>
+    <title>Oppgave 6</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            document.getElementById("btnLeggTil").onclick = leggTil;
+            document.getElementById("btnTomListe").onclick = tomListe;
+        }
+
+
+        function leggTil() {
+            var navn = document.getElementById("varer").value;
+
+            document.getElementById("liste").innerHTML = document.getElementById("liste").innerHTML + "<li>" + navn + "</li>";
+
+            var liList = document.getElementById("liste").getElementsByTagName("li");
+            var antall = liList.length;
+            document.getElementById("antallVarer").innerHTML = "Du har " + antall + " varer i handlelisten din.";
+        }
+
+        function tomListe() {
+            document.getElementById("liste").innerHTML = "";
+        }
+        /* Etter å ha prøvd en stund ble alt bare surrete til slutt, gir opp for nå.
+        function leggTilVare() {
+          var x = document.getElementById("varer");
+          var option = document.createElement("vare");
+          option.text = document.getElementById("leggtilVare").value;
+          x.add(option);
+        }
+        */
+    </script>
+</head>
+
+<body>
+    Ser du ikke varen du har lyst på? Legg den inn i listen, da vel! (Funker ikke)
+    <input type="text" id="leggTilVare"><button type="button" id="btnLeggTilVare">Legg til</button></br>
+    <select id="varer">
+      <option value=""></option>
+      <option value="Melk">Melk</option>
+      <option value="Saft">Saft</option>
+      <option value="Juice">Juice</option>
+      <option value="Egg x 6">Egg x 6</option>
+      <option value="Brød">Brød</option>
+      <option value="Salami">Salami</option>
+      <option value="Vaskepulver">Vaskepulver</option>
+    </select>
+
+    <button type="button" id="btnLeggTil">Legg til</button>
+    <ul id="liste">
+    </ul>
+    <button type="button" id="btnTomListe">Tøm liste</button>
+    <p id="antallVarer"></p>
+</body>

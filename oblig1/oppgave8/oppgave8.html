@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<!--Lag en nettside som tegner et "kunstverk" som er basert på Math.random() og
+gjentakelser gjennom setInterval.-->
+
+<html>
+
+<head>
+    <title>Oppgave 8</title>
+    <script>
+        var ctx;
+
+        function oppstart() {
+            cvs = document.getElementById("tegneflate");
+            ctx = cvs.getContext("2d");
+            setInterval(tegn, 01);
+            setInterval(tegn2, 01);
+            setInterval(tegn3, 01);
+            setInterval(tegn4, 01);
+        }
+
+        function tegn() {
+            var cwidth = cvs.width;
+            var cheight = cvs.height;
+            var randomX = Math.random() * cwidth;
+            var randomY = 500;
+            var randomB = Math.round(Math.random() * 255);
+            var randomR = Math.round(Math.random() * 255);
+            var randomG = Math.round(Math.random() * 255);
+            ctx.beginPath();
+            ctx.strokeStyle = "rgb(" + randomR + "," + randomG + "," + randomB + ")";
+            ctx.lineWidth = 1;
+            ctx.moveTo(cwidth / 2, cheight / 2);
+            ctx.lineTo(randomX, randomY);
+            ctx.stroke();
+        }
+
+        function tegn2() {
+            var cwidth = cvs.width;
+            var cheight = cvs.height;
+            var randomX = Math.random() * cwidth;
+            var randomY = 0;
+            var randomB = Math.round(Math.random() * 255);
+            var randomR = Math.round(Math.random() * 0);
+            var randomG = Math.round(Math.random() * 255);
+            ctx.beginPath();
+            ctx.strokeStyle = "rgb(" + randomR + "," + randomG + "," + randomB + ")";
+            ctx.lineWidth = 1;
+            ctx.moveTo(cwidth / 2, cheight / 2);
+            ctx.lineTo(randomX, randomY);
+            ctx.stroke();
+        }
+
+        function tegn3() {
+            var cwidth = cvs.width;
+            var cheight = cvs.height;
+            var randomX = 500;
+            var randomY = Math.random() * cheight;
+            var randomB = Math.round(Math.random() * 255);
+            var randomR = Math.round(Math.random() * 255);
+            var randomG = Math.round(Math.random() * 0);
+            ctx.beginPath();
+            ctx.strokeStyle = "rgb(" + randomR + "," + randomG + "," + randomB + ")";
+            ctx.lineWidth = 1;
+            ctx.moveTo(cwidth / 2, cheight / 2);
+            ctx.lineTo(randomX, randomY);
+            ctx.stroke();
+        }
+
+        function tegn4() {
+            var cwidth = cvs.width;
+            var cheight = cvs.height;
+            var randomX = 0;
+            var randomY = Math.random() * cheight;
+            var randomB = Math.round(Math.random() * 0);
+            var randomR = Math.round(Math.random() * 255);
+            var randomG = Math.round(Math.random() * 255);
+            ctx.beginPath();
+            ctx.strokeStyle = "rgb(" + randomR + "," + randomG + "," + randomB + ")";
+            ctx.lineWidth = 1;
+            ctx.moveTo(cwidth / 2, cheight / 2);
+            ctx.lineTo(randomX, randomY);
+            ctx.stroke();
+        }
+    </script>
+</head>
+
+<body onload="oppstart()">
+    <canvas id="tegneflate" width="500" height="500" style="border:1px solid">
+	</canvas>
+</body>
+
+</html>

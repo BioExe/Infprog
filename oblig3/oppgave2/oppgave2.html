@@ -1,0 +1,31 @@
+<!doctype HTML>
+
+<!--Lag en webside med en tekstboks og en knapp. Lag så en array med antall dager i hver
+måned. Antall dager i januar skal da være på indeks 0, februar på indeks 1 osv. I tekstboksen
+skal du så kunne skrive inn nummeret på en måned (1-12), og få ut antall dager i denne
+måneden. Du kan her se bort i fra skuddår.-->
+
+<head>
+	<title>Oppgave 2</title>
+	<meta charset="utf-8" />
+	<script>
+		window.onload = oppstart;
+
+		function oppstart() {
+			document.getElementById("btnVisM").onclick = oppgave2;
+		}
+    function oppgave2() {
+    	var liste = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    	var tall = Number(document.getElementById("input").value);
+    	var tekst = document.getElementById ("visM");
+    	tall = tall-1;
+    	tekst.innerHTML = liste[tall];
+    }
+
+	</script>
+</head>
+<body>
+  <input type="text" id="input" placeholder="Skriv inn nummeret til måneden du ønsker å vise dagene på."></input>
+  <button type="button" id="btnVisM">Kjør</button>
+  <p id="visM"></p>
+</body>

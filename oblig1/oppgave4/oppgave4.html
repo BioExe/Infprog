@@ -1,0 +1,25 @@
+<!doctype HTML>
+
+<!--Lag et "nummerisk tastatur" ved å plassere ut 10 knapper med teksten 0,1,2,3 osv. Lag så
+et tekstfelt, der du kan skrive inn tall som 4327 ved å trykke på knappene. Hver gang du
+trykker på en knapp, skal altså sifferet som står på knappen legges til i tekstboksen.-->
+
+<head>
+	<title>Oppgave 4</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<form name="tastatur">
+		<input type="text" value="" name="txtboks" /><br />
+		<input type="button" value="1" onClick="document.tastatur.txtboks.value+='1'"/>
+		<input type="button" value="2" onClick="document.tastatur.txtboks.value+='2'"/>
+		<input type="button" value="3" onClick="document.tastatur.txtboks.value+='3'"/><br/>
+		<input type="button" value="4" onClick="document.tastatur.txtboks.value+='4'"/>
+		<input type="button" value="5" onClick="document.tastatur.txtboks.value+='5'"/>
+		<input type="button" value="6" onClick="document.tastatur.txtboks.value+='6'"/><br/>
+		<input type="button" value="7" onClick="document.tastatur.txtboks.value+='7'"/>
+		<input type="button" value="8" onClick="document.tastatur.txtboks.value+='8'"/>
+		<input type="button" value="9" onClick="document.tastatur.txtboks.value+='9'"/><br/>
+		<input type="button" value="0" onClick="document.tastatur.txtboks.value+='0'"/>
+	</form>
+</body>

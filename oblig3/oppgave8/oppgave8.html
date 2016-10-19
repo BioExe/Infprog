@@ -1,0 +1,130 @@
+<!doctype HTML>
+
+<!--
+Vi kan også lage funksjoner som arbeider med arrayer (tar en array som parameter). Lag
+følgende 4 funksjoner som arbeider med arrayer av tall, som returnerer følgende:
+1. Finner største tallet i arrayen
+2. Finner summen av arrayen
+3. Finner gjennomsnittet av arrayen (kan denne benytte funksjon 2)
+4. Finner ut om ett bestemt tall (angis som parameter) er i arrayen eller ikke
+-->
+
+<head>
+    <title>Oppgave 8</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            document.getElementById("btnStorst").onclick = printStorst;
+            document.getElementById("btnSum").onclick = printSum;
+            document.getElementById("btnGjsnitt").onclick = printGjsnitt;
+            document.getElementById("btnSjekk").onclick = printSjekk;
+            document.getElementById("btnRandom").onclick = printRandom;
+            var utskriftStorst = document.getElementById("utskriftStorst");
+            var utskriftSum = document.getElementById("utskriftSum");
+            var utskriftGjsnitt = document.getElementById("utskriftGjsnitt");
+            var utskriftSjekk = document.getElementById("utskriftSjekk");
+        }
+
+        var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 55, 32, 78, 55, 56, 21, 29, 59, 36, 82, 71, 22, 99, 100, 1, 41, 89, 12];
+
+        //størst
+        function functStorst(x) {
+            var vStorst = x[0];
+            for (i = 0; i < x.length; i++) {
+                if (x[i] > vStorst) {
+                    vStorst = x[i];
+                }
+            }
+            return vStorst;
+        }
+
+        function printStorst() {
+            skrivUt(utskriftStorst, functStorst(array));
+        }
+
+        //sum
+        function functSum(z) {
+            var sum = 0;
+            for (i = 0; i < z.length; i++) {
+                sum += z[i];
+            }
+            return sum;
+        }
+
+        function printSum() {
+            skrivUt(utskriftSum, functSum(array));
+        }
+
+        //gjennomsnitt
+        function functGjsnitt(y) {
+            var snitt = functSum(y) / y.length;
+            return snitt.toFixed(0);
+        }
+
+        function printGjsnitt() {
+            skrivUt(utskriftGjsnitt, functGjsnitt(array));
+        }
+
+        //sjekk om tallet brukeren skrev inn finnes i arrayen
+        function sjekkTall(c, v) {
+            var teller = 0;
+            for (i = 0; i < v.length; i++) {
+                if (v[i] === c) {
+                    teller++;
+                    if (teller > 0) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        function printSjekk() {
+            var input = parseFloat(document.getElementById("txtSjekk").value);
+            utskriftSjekk.innerHTML = "";
+
+            if (sjekkTall(input, array) === true) {
+                skrivUt(utskriftSjekk, "Tallet " + input + " finnes i arrayen.");
+            }
+            if (sjekkTall(input, array) === false || sjekkTall(input, array) === undefined) {
+                skrivUt(utskriftSjekk, "Tallet " + input + " finnes ikke i arrayen");
+            }
+        }
+        //skriver ut tre tilfeldige tall fra arrayen - samme som fra oppgave 3 og 4
+        function printRandom() {
+          var a = array;
+          var arrayRandom = [];
+            for (i = 0; i < 3; i++) {
+                var r = Math.floor(Math.random() * a.length);
+                arrayRandom[i] = a[r];
+                a.splice(r, 1);
+            }
+            utskriftRandom.innerHTML = arrayRandom;
+        }
+
+        //funksjon for å skrive ut
+        function skrivUt(id, utskrift) {
+            id.innerHTML += utskrift;
+        }
+    </script>
+</head>
+
+<body>
+    <p><button type="button" id="btnStorst">Print største tallet i arrayen</button></p>
+    <p><button type="button" id="btnSum">Print summen av tallene i arrayen</button></p>
+    <p><button type="button" id="btnGjsnitt">Print gjennomsnittet av tallene i arrayen</button></p>
+    <p><input type="number" id="txtSjekk" placeholder="Skriv inn et tall"></input>
+        </br>
+        <button type="button" id="btnSjekk">Sjekk om tallet du skrev inn finnes i arrayen</button>
+    </p>
+    <p><button type="button" id="btnRandom">Skriv ut tre tilfeldige tall fra arrayen</button></p>
+
+    <p id="utskriftStorst">Det største tallet er: </p>
+    <p id="utskriftSum">Summen av tallene i arrayen er: </p>
+    <p id="utskriftGjsnitt">Gjennomsnittet av tallene i arrayen er: </p>
+    <p id="utskriftSjekk"></p>
+    <p id="utskriftRandom"></p>
+</body>

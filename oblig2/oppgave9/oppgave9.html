@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+
+<!--Lag følgende grafiske brukergrensesnitt (pengebeløp, antall år og rente):
+Lag deretter en for-løkke i knappens onclick-hendelse, som skriver ut linjer slik.
+Etter 1 år har du xxx penger i banken.
+Etter 2 år har du xxx penger i banken.
+...
+Etter yyy år har du xxx penger i banken.-->
+
+<head>
+    <title>Oppgave 9</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+          for(i=0;i<=5;i++){
+            for (j=0;j<=5;j++){
+              document.getElementById("txtToSi").innerHTML+=i+j;
+              for (k=1;k<=5;k++) {
+                document.getElementById("txtTrSi").innerHTML+=i+j+k;
+                for (l=1;1<=5;l++){
+                  document.getElementById("txtFiSi").innerHTML+=i+j+k+l;
+                  for (m=1;1<=5;m++){
+                    document.getElementById("txtFeSi").innerHTML+=i+j+k+l+m;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+    </script>
+</head>
+
+<body>
+  <p id="txtToSi"></p></br></br>
+  <p id="txtTrSi"></p></br></br>
+  <p id="txtFiSi"></p></br></br>
+  <p id="txtFeSi"></p></br></br>
+</body>

@@ -1,0 +1,67 @@
+<!doctype HTML>
+
+<!--Lag et skjema for å opprette en bruker på en nettside som inneholder materiale som kun er
+egnet for et voksent publikum. Skjemaet skal bestå av felter for ønsket brukernavn, passord,
+passordbekreftelse, alderskontroll og en registrer knapp. Når man trykker knappen skal
+programmet sjekke om man har fylt ut feltene, at passordet i passordfeltene er like og at
+brukeren er minst 18 år gammel. Om ett eller begge feltene ikke inneholder noe skal du gi
+brukeren beskjed om hvilke felter som ikke er fylt ut. Om brukeren ikke har skrevet inn
+passordet likt i feltene skal du gi en beskjed om dette. Om brukeren er under 18 år skal du gi
+en passende tilbakemelding ang dette. Om feltene er korrekt fylt ut skal du takke brukeren for
+registreringen.-->
+
+<head>
+    <title>Brukerregistrering3</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            document.getElementById("btnReg").onclick = registrering;
+        }
+
+        function registrering() {
+            var inpNavn = document.getElementById("bNavn").value;
+            var inpPass = document.getElementById("bPassord").value;
+            var inpPassbekreft = document.getElementById("bPassordbekreft").value;
+            var inpAlder = document.getElementById("alder").value;
+
+            if (inpNavn === "" && inpPass === "") {
+                document.getElementById("utskrift").innerHTML = "Vennligst skriv inn brukernavnet og passordet du ønsker å bruke.";
+            } else if (inpNavn === "") {
+                document.getElementById("utskrift").innerHTML = "Vennligst skriv inn et brukernavn.";
+            } else if (inpPass === "") {
+                document.getElementById("utskrift").innerHTML = "Vennligst skriv inn et passord.";
+            } else if (inpPass.length < 6) {
+                document.getElementById("utskrift").innerHTML = "Pass på at passordet ditt er på over 5 tegn.";
+            } else if (inpPass !== inpPassbekreft) {
+                document.getElementById("utskrift").innerHTML = "Passordene du har skrevet inn er ikke like.";
+            } else if (inpAlder == "") {
+                document.getElementById("uskrift").innerHTML = "Vennligst skriv inn alderen din.";
+            } else if (inpAlder < 18) {
+                document.getElementById("utskrift").innerHTML = "Du må være over 18 år for å kunne registrere deg."
+            } else {
+                document.getElementById("utskrift").innerHTML = "Takk for at du registrerte deg!"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    Brukernavn:
+    <input type="text" id="bNavn"></input>
+    </br>
+    </br>
+    Passord:
+    <input type="password" id="bPassord"></input>
+    </br>
+    </br>
+    Passordbekreftelse:
+    <input type="password" id="bPassordbekreft"></input>
+    </br>
+    </br>
+    Alder: <input id="alder" type="number" value="">
+    <button id="btnReg">Registrer</button>
+    </br>
+    <p id="utskrift"></p>
+</body>

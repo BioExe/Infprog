@@ -1,0 +1,30 @@
+
+<!doctype HTML>
+
+<!--Lag en helt enkel nettside med to ulike knapper og en paragraf. Registrer en hendelse på
+hver av kappene. Når du trykker på den første knappen, skal paragrafen vise Hei på deg,
+og med den andre knappen skal Ha det bra vises.-->
+
+<head>
+	<title>Oppgave 1</title>
+	<meta charset="utf-8"/>
+	<script>
+		window.onload = oppstart;
+
+		function oppstart() {
+			document.getElementById("btnHei").onclick = hei;
+			document.getElementById("btnHade").onclick = hade;
+		}
+		function hei() {
+			document.getElementById("utskrift").innerHTML = "Hei på deg";
+		}
+		function hade() {
+			document.getElementById("utskrift").innerHTML = "Ha det bra";
+		}
+	</script>
+</head>
+<body>
+	<button type="button" id="btnHei">Knapp én</button> <br/>
+	<button type="button" id="btnHade">Knapp to</button>
+	<p id="utskrift"></p>
+</body>

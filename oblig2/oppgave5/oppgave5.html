@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+
+<!--En spådame ønsker å reise vekk på ferie, og vil derfor automatisere sine tjenester via en
+nettside. Du har fått i oppgave å lage denne funksjonaliteten.
+Lag en nettside for å gi en spådom, hvor man kan skrive inn verdier i tekstbokser for navn,
+alder og høyde. I tillegg skal det være en nedtrekksliste for kjønn.-->
+
+<head>
+    <title>Oppgave 5</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            document.getElementById("btnSpadom").onclick = functSpadom;
+            var selKjonn = document.getElementById("selKjonn").value;
+        }
+
+        function functSpadom() {
+            if (selKjonn.value == "Jente") {
+                functSpadomJ();
+            }
+            if (selKjonn.value == "Gutt") {
+                functSpadomG();
+            }
+        }
+
+        function functSpadomJ() {
+            var vJente = parseInt(txtAlder.value) * parseInt(txtHoyde.value) - 3;
+            if (vJente % 2 == 0) {
+                document.getElementById("utskrift").innerHTML = "Det vil gå deg gått her i verden, for at spådommen skal gå i oppfyllelse, må du betale inn 100 kr til følgende kontonummer: 1234.12.12345."
+            } else {
+                document.getElementById("utskrift").innerHTML = "Stakkars deg! Alt kommer til å gå deg galt, for at spådomme IKKE skal gå i oppfyllelse, må du betale inn 100 kr til følgende kontonummer: 1234.12.12345.";
+            }
+        }
+
+        function functSpadomG() {
+            var vGutt = parseInt(txtNavn.value.length) * parseInt(txtAlder.value) - parseInt(txtHoyde.value);
+            if (vGutt % 2 == 0) {
+                document.getElementById("utskrift").innerHTML = "Det vil gå deg gått her i verden, for at spådommen skal gå i oppfyllelse, må du betale inn 100 kr til følgende kontonummer: 1234.12.12345.";
+            } else {
+                document.getElementById("utskrift").innerHTML = "Stakkars deg! Alt kommer til å gå deg galt, for at spådomme IKKE skal gå i oppfyllelse, må du betale inn 100 kr til følgende kontonummer: 1234.12.12345.";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    Kjønn:
+    <select id="selKjonn">
+            <option>Jente</option>
+            <option>Gutt</option>
+  </select></br>
+    </br>
+    Navn:
+    <input type="text" id="txtNavn" /></br>
+    </br>
+    Alder:
+    <input type="text" id="txtAlder" /></br>
+    </br>
+    Høyde:
+    <input type="text" id="txtHoyde" /></br>
+    </br>
+
+    <button type="button" id="btnSpadom">Gi Spådom</button>
+    <p id="utskrift"></p>
+</body>

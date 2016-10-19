@@ -1,0 +1,79 @@
+<!doctype HTML>
+
+<!--Bruk funksjonene i et canvas og tegn et hus med vindu, dør og trekantet tak ved hjelp av
+JavaScript. Før du skriver koden, kan det være lurt å tegne huset inn i koordinatsystemet
+på et ark.-->
+
+<head>
+	<title>Oppgave 5</title>
+	<meta charset="utf-8" />
+	<script>
+		window.onload = oppstart;
+
+		function oppstart() {
+			var ctx = document.getElementById("tegneflate").getContext("2d");
+			//husvegg
+			ctx.beginPath();
+			ctx.rect(150, 200, 250, 150);
+			ctx.fillStyle ="red";
+			ctx.fill()
+			ctx.stroke();
+
+			//dør
+			ctx.beginPath();
+			ctx.rect(200, 275, 50, 75);
+			ctx.stroke();
+			ctx.fillStyle ="white";
+			ctx.fill();
+
+			//vindu
+			ctx.beginPath();
+			ctx.rect(300, 250, 50, 50);
+			ctx.stroke();
+			ctx.fill();
+
+			//hustak
+			ctx.beginPath();
+			ctx.moveTo(135,200);
+			ctx.lineTo(280,100);
+			ctx.lineTo(415,200);
+			ctx.closePath();
+			ctx.fillStyle ="black";
+			ctx.fill();
+			ctx.stroke();
+
+			//dørhåndtak
+			ctx.beginPath();
+			ctx.moveTo(235, 318);
+			ctx.lineTo(240, 318);
+			ctx.stroke();
+
+			//sprosse 1
+			ctx.beginPath();
+			ctx.moveTo(300, 275);
+			ctx.lineTo(350, 275);
+			ctx.stroke();
+
+			//sprosse 2
+			ctx.beginPath();
+			ctx.moveTo(325, 300);
+			ctx.lineTo(325, 250);
+			ctx.stroke();
+
+			//ringeklokke
+			ctx.beginPath();
+			ctx.fillStyle = "gray";
+			ctx.arc(260, 300, 3, 0, 2 * Math.PI);
+			ctx.fill();
+
+		}
+	</script>
+	<style>
+		#tegneflate {
+			border-style: solid;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="tegneflate" width="500" height="500"></canvas>
+</body>

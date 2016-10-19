@@ -1,0 +1,46 @@
+<!doctype HTML>
+
+<!--Lag en kalkulator som utfører beregninger basert på selvvalgt brukerdata (ikke BMI som
+er benyttet som eksempel i kurset). Kalkulatoren skal minst inneholde en tekstboks og en
+nedtrekksliste.-->
+
+<head>
+    <title>Oppgave 7</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            document.getElementById("btnBeregn").onclick = beregn;
+        }
+
+        function beregn() {
+            var poser = document.getElementById("chillinottposer").value;
+            var pris = document.getElementById("prisperpose").value;
+
+            var sum = poser * pris;
+
+            document.getElementById("utskrift").innerHTML = "Det koster " + sum + "kr for å kjøpe " + poser + " poser med chillinøtter.";
+        }
+    </script>
+</head>
+
+<body>
+    <p>Velg hvor mange 150g poser med chillinøtter du vil ha, skriv inn prisen hver pose koster, og klikk beregn for å få opp totalprisen.</p>
+    <select id="chillinottposer">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+  </select></br>
+    <input type="text" id="prisperpose" /></br>
+    <button type="button" id="btnBeregn">Beregn</button> <br/>
+    <p id="utskrift"></p>
+</body>

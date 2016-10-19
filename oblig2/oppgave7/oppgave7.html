@@ -1,0 +1,88 @@
+<!doctype HTML>
+
+<!--Skriv ut lister med tall mellom 0 og 100 etter følgende regler:
+Forlengs: 0,1,2,...,98,99,100
+Baklengs: 100,99,98,...,1,0
+Delt på 2: 0,0.5,...,49,49.5,50
+Kun de som er delige på 3: 3,6,9...99 (Tips: Her kan man prøve %-operatoren)
+Partall: 2,4,6,8,...98,100
+Oddetall: 1,3,5,...,97,99
+Annenhvert tall positivt og negativt: 0,-1,2,-3,4,-5,...,-99,100.-->
+
+<head>
+    <title>Oppgave 7</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            document.getElementById("btnForlengs").onclick = forlengs;
+            document.getElementById("btnBaklengs").onclick = baklengs;
+            document.getElementById("btnDeltPaTo").onclick = deltpato;
+            document.getElementById("btnDelPaTre").onclick = delpatre;
+            document.getElementById("btnPartall").onclick = partall;
+            document.getElementById("btnOddetall").onclick = oddetall;
+            document.getElementById("btnPosNeg").onclick = posneg;
+        }
+
+        function forlengs() {
+            document.getElementById("utskrift").innerHTML = "";
+            for (var i = 0; i <= 100; i += 1)
+                document.getElementById("utskrift").innerHTML += (i + "</br>");
+        }
+
+        function baklengs() {
+            document.getElementById("utskrift").innerHTML = "";
+            for (var i = 100; i >= 0; i -= 1)
+                document.getElementById("utskrift").innerHTML += (i + "</br>");
+        }
+
+        function deltpato() {
+            document.getElementById("utskrift").innerHTML = "";
+            for (var i = 0; i <= 100; i += 0.5)
+                document.getElementById("utskrift").innerHTML += (i + "</br>");
+        }
+
+        function delpatre() {
+            document.getElementById("utskrift").innerHTML = "";
+            for (var i = 3; i <= 100; i += 1) {
+                if ((i % 3) == 0)
+                    document.getElementById("utskrift").innerHTML += (i + "</br>");
+            }
+        }
+
+        function partall() {
+            document.getElementById("utskrift").innerHTML = "";
+            for (var i = 0; i <= 100; i += 2)
+                document.getElementById("utskrift").innerHTML += (i + "</br>");
+        }
+
+        function oddetall() {
+            document.getElementById("utskrift").innerHTML = "";
+            for (var i = 1; i <= 100; i += 2)
+                document.getElementById("utskrift").innerHTML += (i + "</br>");
+        }
+
+        function posneg() {
+            document.getElementById("utskrift").innerHTML = "";
+            for (var i = 0; i <= 100; i += 1) {
+                if (i % 2 == 0)
+                    document.getElementById("utskrift").innerHTML += (i + "</br>");
+                else {
+                    document.getElementById("utskrift").innerHTML += ("-" + i + "</br>");
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button id="btnForlengs">Print forlengs</button>
+    <button id="btnBaklengs">Print baklengs</button>
+    <button id="btnDeltPaTo">Print delt på to</button>
+    <button id="btnDelPaTre">Print kun tall delelige på 3</button>
+    <button id="btnPartall">Print partall</button>
+    <button id="btnOddetall">Print oddetall</button>
+    <button id="btnPosNeg">Print annenhvert tall positivt og negativt</button>
+    <p id="utskrift"></p>
+</body>

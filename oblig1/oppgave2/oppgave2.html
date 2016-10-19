@@ -1,0 +1,49 @@
+
+<!doctype HTML>
+
+<!--Lag en nettside med minst tre spørsmål. Hvert spørsmål skal være på sin egen linje, og
+hver linje skal i tillegg til spørsmålet inneholde en "Sann" og en "Usann" knapp. Når du
+trykker på knappene skal en meldingsboks vise "Riktig" eller "Galt" ettersom hvilken
+knapp man trykket på.-->
+
+<head>
+	<title>Oppgave 2</title>
+	<meta charset="utf-8"/>
+	<script>
+		window.onload = oppstart;
+
+			/*Måtte ty til denne stygge løsningen da knappene ikke fungerte når jeg brukte lik id på alle sammen.
+			 *Forsøkte å bruke "getElemntsByClassName", dog uten resultat. Beklager også på forhånd for bruken av alert (antok at det var det som ble ment som meldingsboks?).*/
+		function oppstart() {
+			document.getElementById("btnSant").onclick = sant;
+			document.getElementById("btnUsant").onclick = usant;
+
+			document.getElementById("btn2Sant").onclick = sant;
+			document.getElementById("btn2Usant").onclick = usant;
+
+			document.getElementById("btn3Sant").onclick = sant;
+			document.getElementById("btn3Usant").onclick = usant;
+		}
+		function sant() {
+			alert("Riktig");
+		}
+		function usant() {
+			alert("Galt");
+		}
+	</script>
+</head>
+<body>
+	<p>Pizza eller alt annet?</p>
+	<button type="button" id="btnSant">Pizza</button>
+	<button type="button" id="btnUsant">Alt annet</button>
+
+
+	<p>Mennesket er et virveldyr.</p>
+	<button type="button" id="btn2Sant">Sant</button>
+	<button type="button" id="btn2Usant">Usant</button>
+
+
+	<p>Pattedyr legger egg.</p>
+	<button type="button" id="btn3Usant">Sant</button>
+	<button type="button" id="btn3Sant">Usant</button>
+</body>

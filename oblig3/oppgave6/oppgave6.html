@@ -1,0 +1,88 @@
+<!doctype HTML>
+
+<!--
+Dere skal lage en "kidnappingsbrevgenerator". Brukeren skal kunne skrive inn en tekst og
+generere et kidnappingsbrev av denne teksten. Bildefiler finner dere på nett.
+-->
+
+<head>
+	<title>Oppgave 6A</title>
+	<meta charset="utf-8" />
+	<script>
+		window.onload = oppstart;
+		/*bilder tatt fra "http://contactsheet.org/junk/ransom.html"*/
+		var bilder = {
+			a: "a.gif",
+			b: "b.gif",
+			c: "c.gif",
+			d: "d.gif",
+			e: "e.gif",
+			f: "f.gif",
+			g: "g.gif",
+			h: "h.gif",
+			i: "i.gif",
+			j: "j.gif",
+			k: "k.gif",
+			l: "l.gif",
+			m: "m.gif",
+			n: "n.gif",
+			o: "o.gif",
+			p: "p.gif",
+			q: "q.gif",
+			r: "r.gif",
+			s: "s.gif",
+			t: "t.gif",
+			u: "u.gif",
+			v: "v.gif",
+			w: "w.gif",
+			x: "x.gif",
+			y: "y.gif",
+			z: "z.gif",
+			1: "1.gif",
+			2: "2.gif",
+			3: "3.gif",
+			4: "4.gif",
+			5: "5.gif",
+			6: "6.gif",
+			7: "7.gif",
+			8: "8.gif",
+			9: "9.gif",
+			0: "0.gif",
+		}
+		function oppstart() {
+			document.getElementById("btnGenerer").onclick = generer;
+			document.getElementById("btnClear").onclick = clear;
+			document.getElementById("btnLinjeskift").onclick = linjeskift;
+		}
+
+		function generer() {
+			var tekstArray = [];
+			var bildeUtvalg;
+			var input = document.getElementById("txtInput").value;
+			inputArray = input.split("");
+
+			for (var i = 0; i < inputArray.length; i++) {
+				bildeUtvalg = document.createElement("img");
+				bildeUtvalg.src = bilder[inputArray[i]];
+				utskrift.appendChild(bildeUtvalg);
+			}
+		}
+		function linjeskift() {
+			utskrift.innerHTML += "</br>";
+		}
+
+		function clear() {
+			utskrift.innerHTML = "";
+		}
+	</script>
+</head>
+
+<body>
+	<h1>Oppgave 6A - "Kidnappingsbrevgenerator"</h1>
+	<p>Mellomrom funker dårlig, samme med ÆØÅ, og tegn. Tall og resten av alfabetet fungerer.</p>
+	<input id="txtInput" type="text" value="abcdefghijklmnopqrstuvwxyz1234567890"></input>
+	<button id="btnGenerer" type="button">Utskrift</button>
+	<button id="btnClear" type="button">Clear</button>
+	<button id="btnLinjeskift" type="btnLinjeskift">Linjeskift</button>
+	<p id="utskrift"></p>
+</body>

@@ -1,0 +1,35 @@
+<!doctype HTML>
+
+<!--
+Oppgave 3: Gå ut i fra at du har definert en array med navn på studenter. Denne definisjonen kan f.eks se ut som følger:
+ var arr = [Hans","Ole","Nils","Olav","Per","Knut","Kari","Line","Pia"];
+Skriv kode som plukker ut tre tilfeldige navn fra denne arrayen (Tips: Math.random() ), og
+legger disse i en egen/ny array. Skriv deretter ut denne nye arrayen.
+
+Oppgave 4: Gjør endringer på koden i oppgave 3 slik at samme navn ikke blir plukket ut flere ganger.
+-->
+
+<head>
+    <title>Oppgave 3</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppgave3;
+
+        function oppgave3() {
+            var arrayNavn = ["Hans", "Ole", "Nils", "Olav", "Per", "Knut", "Kari", "Line", "Pia"];
+            var utskrift = document.getElementById("utskrift");
+            var arrayRandom = [];
+
+            for (i=0;i<3;i++) {
+                var r = Math.floor(Math.random()*arrayNavn.length);
+                arrayRandom[i] = arrayNavn[r];
+                arrayNavn.splice(r, 1);
+            }
+            utskrift.innerHTML = arrayRandom;
+        }
+    </script>
+</head>
+
+<body>
+    <p id="utskrift"></p>
+</body>
