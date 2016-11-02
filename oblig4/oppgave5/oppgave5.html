@@ -1,0 +1,33 @@
+<!doctype HTML>
+
+<head>
+	<title>Oppgave 5</title>
+	<meta charset="utf-8" />
+	<script>
+		window.onload = oppstart;
+
+		function oppstart() {
+			document.getElementById("btnPrint").onclick = print;
+		}
+
+		function print() {
+			var utskrift = document.getElementById("utskrift");
+			var bokstaver = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+
+			utskrift.innerHTML = "";
+			for (var i = 0; i <= bokstaver.length - 1; i++) {
+				utskrift.innerHTML += (i + 1) + ":";
+				for (var j = 0; j <= i; j++) {
+					utskrift.innerHTML += bokstaver[i];
+				}
+				utskrift.innerHTML += "</br>";
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<button type="button" id="btnPrint">Print</button></br>
+	<p id="utskrift"></p>
+	<p>Ser ikke særlig pent ut, men du får nesten bare stole på at det stemmer - eller telle igjennom dersom du er veldig tålmodig.</p>
+</body>

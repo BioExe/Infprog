@@ -1,0 +1,34 @@
+<!doctype HTML>
+
+<head>
+    <title>Oppgave 6</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            document.getElementById("btnPrint").onclick = print;
+        }
+
+        function print() {
+            var utskrift = document.getElementById("utskrift");
+            var tall = [3, 42, 7, 69, 12, 9, 37, 17, 10];
+            var partall = 0;
+            var oddetall = 0;
+
+            for (var i = 0; i <= tall.length - 1; i++) {
+                if (tall[i] % 2 === 0) {
+                    partall++;
+                } else {
+                    oddetall++;
+                }
+            }
+            utskrift.innerHTML = "Oddetall: " + oddetall + "</br>" + "Partall: " + partall;
+        }
+    </script>
+</head>
+
+<body>
+    <button type="button" id="btnPrint">Print</button></br>
+    <p id="utskrift"></p>
+</body>

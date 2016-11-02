@@ -1,0 +1,32 @@
+<!doctype HTML>
+
+<head>
+    <title>Oppgave 8</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            document.getElementById("btnPrint").onclick = print;
+        }
+
+        function print() {
+            var arrayA = [2, 5, 2, 4, 7, 3, 2];
+            var arrayB = [9, 1, 3, 2, 6, 4, 3];
+            var arrayC = [0, 0, 0, 0, 0, 0, 0];
+            for (i = 0; i < arrayA.length; i++) {
+                if (arrayA[i] > arrayB[i]) { //om A[i] er større enn B[i] skrives A[i] til C[i]
+                    arrayC[i] = arrayA[i];
+                } else if (arrayA[i] < arrayB[i]) { //om B[i] er større enn A[i] skrives B[i] til C[i]
+                    arrayC[i] = arrayB[i];
+                }
+            }
+            document.getElementById("utskrift").innerHTML = arrayC;
+        }
+    </script>
+</head>
+
+<body>
+    <button type="button" id="btnPrint">Print</button></br>
+    <p id="utskrift"></p>
+</body>

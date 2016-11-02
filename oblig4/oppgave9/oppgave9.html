@@ -1,0 +1,28 @@
+<!doctype HTML>
+
+<head>
+    <title>Oppgave 9</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            var utskrift = document.getElementById("utskrift");
+            var alfabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+            var liste = ["F", "B", "C", "F", "G", "P"]
+
+            for (i = 0; i < alfabet.length; i++) {
+                for (j = 0; j < liste.length; j++) {
+                    if (alfabet[i] === liste[j]) {
+                        alfabet.splice(i, 1);
+                    }
+                }
+            }
+            utskrift.innerHTML = alfabet;
+        }
+    </script>
+</head>
+
+<body>
+    <p id="utskrift"></p>
+</body>

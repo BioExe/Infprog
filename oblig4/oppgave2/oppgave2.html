@@ -1,0 +1,62 @@
+<!doctype HTML>
+<!--
+Skriv ferdig følgende funksjoner.
+a) Funksjon som returnerer absoluttverdien av et tall (Absoluttverdien er selve tallverdien
+uten fortegn, slik at 7 og -7 begge returnerer 7). Du får her ikke benytte deg av den innebygde
+abs-funksjonen.
+function absoluttverdi(tall)
+b) Funksjon som finner gjennomsnittet av elementene mellom en nedre og øvre index i en
+array.
+function finnGjennomsnittUtvalg(array, startindex, sluttindex)
+-->
+
+<head>
+	<title>Oppgave 2</title>
+	<meta charset="utf-8" />
+	<script>
+		window.onload = oppstart;
+
+		function oppstart() {
+			document.getElementById("2A").onclick = toA;
+			document.getElementById("2B").onclick = toB;
+
+		}
+
+		function toA() {
+			var utskriftA = document.getElementById("utskriftA");
+			var M = parseInt(document.getElementById("txtB").value);
+			if (M >= 0) {
+				utskriftA.innerHTML = M;
+			} else {
+				utskriftA.innerHTML = M * -1;
+			}
+		}
+
+		function gjsnitt(array, startindex, sluttindex) {
+			var resultat = 0;
+			for (i = startindex; i <= sluttindex; i++) {
+				resultat += array[i];
+			}
+			resultat = resultat / (sluttindex - startindex + 1);
+			return (resultat.toFixed(2));
+		}
+
+		function toB() {
+			var rArray = [0, 7, 8, 2, 6, 3, 7, 8, 3, 13, 66, 3, 1, 9, 36, 22, 88, 56, 12, 98, 100];
+			document.getElementById("utskriftB").innerHTML = gjsnitt(rArray, 0, 10);
+		}
+	</script>
+</head>
+
+<body>
+	<h2>Absoluttverdi</h2>
+	<input type="number" id="txtB"></br>
+	<textarea id="utskriftA"></textarea></br>
+	<button id="2A">Beregn</button>
+
+	<h2>Gjennomsnitt</h2>
+
+	<p id="utskriftB">........</p>
+	<p>Du kan endre start- og sluttindex i koden.</p>
+	<button id="2B">Beregn</button>
+</body>

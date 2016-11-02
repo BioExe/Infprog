@@ -1,0 +1,44 @@
+<!doctype HTML>
+
+<head>
+    <title>Oppgave 4</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            document.getElementById("btnPrint").onclick = print;
+        }
+
+        function print() {
+            var utskrift = document.getElementById("utskrift");
+            var temperatur = 12.3; // i °C
+            var vindhastighet = 4.6; // i m/s
+            var vindretning = "NØ" // forkortelse for NordØstlig
+            var nedbor = 3.7 // i antall mm
+            utskrift.innerHTML = "" //rensker
+
+            if (nedbor != 0 && vindhastighet == 0) { //om nedbør ikke er 0 og vinhastighet er 0
+                utskrift.innerHTML += "Det regner og er vindstille!" + "</br>"
+            }
+
+            if (vindretning == "NØ" || vindretning == "N" || vindretning == "NV") { //vindretning er enten nordøstlig, nordlig, eller nordvestlig
+                utskrift.innerHTML += "Det blåser nord-, nordøst- eller nordvestlig vind!" + "</br>"
+            }
+
+            if ((nedbor > 5) || (temperatur < 0 && vindretning == "NØ")) { //mer enn 5mm regn eller temperatur er under 0 (frost) og vindretning er sørøstlig
+                utskrift.innerHTML += "Det regner mer enn 5 mm ELLER det er frost og sørøstlig vind." + "</br>"
+            }
+
+            if ((vindhastighet >= 13.9 && vindhastighet <= 17.1) || (vindhastighet > 32.6)) { //vindhastighet er mellom 13.9 m/s og 17.1 m/s eller over 32.6 m/s
+                utskrift.innerHTML += "Det er kuling (13.9-17.1 m/s) ELLER orkan (over 32.6 m/s)" + "</br>"
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <button type="button" id="btnPrint">Print</button> <br/>
+    <p id="utskrift"></p>
+</body>
