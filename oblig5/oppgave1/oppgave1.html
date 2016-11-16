@@ -1,0 +1,66 @@
+<!doctype HTML>
+
+<!--
+Linjeforeningen Enigma får stadig pågang fra bedrifter som ønsker å rekruttere
+studenter gjennom bedriftspresentasjoner. Dette skaper behov for noen små
+webløsninger til å administrere presentasjonene. Til dette formålet har Enigmas ITansvarlige
+laget fila presentasjoner.dat og fylt den med data:
+812¤SuperIT¤2015-12-06 18:00¤25
+614¤MediaHuset¤2016-01-14 16:15¤67
+Osv..
+Lag en opplisting med alle de presentasjonene som er fremover i tid. Opplistingen
+skal ha følgende form:
+812 - SuperIT
+2015-12-06 18:00
+Antall plasser: 25
+614 - MediaHuset
+2016-01-14 16:15
+Antall plasser: 67
+osv…
+-->
+
+<head>
+    <title>Oppgave 1</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() { //så godt som det samme som ble gått gjennom på forelesning, henter fila og leser den
+            var fil = "presentasjoner.dat";
+
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = print;
+            xmlhttp.open("GET", fil, true);
+            xmlhttp.send();
+        }
+
+        function print() {
+
+            var utskrift = document.getElementById("utskrift");
+
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                var innhold = xmlhttp.responseText; //legger dataen fra presentasjoner.dat inn i et array
+                var linjer = innhold.split("\n"); //deler dataen opp etter ny linje
+
+                for (var i=0;i<linjer.length;i++) { //løkke som skriver ut, variablene er ganske selvforklarende
+                    var deler = linjer[i].split(";"); //deler dataen opp etter skilletegnet ";" (meksikaner på sykkel fungerte ikke)
+                    var id = deler[0];
+                    var navn = deler[1];
+                    var dato = deler[2];
+                    var plasser = deler[3];
+
+                    if (new Date().getTime() < new Date(dato).getTime()) { //if-test som sjekker om datoen er utløpt
+                        utskrift.innerHTML += "<b><i>" + id + " - " + navn + "</b></i></br>" + dato + "</br>Antall plasser: " + plasser + "</br></br>";
+                    }
+
+
+                }
+
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <p id="utskrift"></p>
+</body>

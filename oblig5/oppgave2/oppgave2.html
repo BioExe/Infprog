@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<!--
+Enigma ønsker også å ha en egen nettside med et påmeldingsskjema til
+presentasjonene. Dette påmeldingsskjemaet skal inneholde:
+* nedtrekksliste for å velge presentasjon (hentes fra fila). Alternativt ha en tekstboks
+der man kan skrive inn koden som en absolutt minimumsløsning
+* tekstboks for navn
+* tekstboks for e-post
+Skjemaet skal sende data til et script som heter registrer.php med URL på følgende
+form:
+registrer.php?kode=812&navn=Tom Heine Nätt&epost=tom.h.natt@hiof.no
+Fila registrer.php skriver data til en fil kalt paameldinger.dat med følgende format:
+812¤Tom Heine Nätt¤tom.h.natt@hiof.no
+614¤Ole Olsen¤ole.olsen@hiof.no
+812¤Ole Olsen¤ole.olsen@hiof.no 
+-->
+
+<head>
+    <meta charset="utf-8">
+    <title>Oppgave 2</title>
+</head>
+<script>
+    window.onload = oppstart;
+
+    //Første delen er kun for å få lage dropdown menyen
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = deltInn;
+    xmlhttp.open("GET", "presentasjoner.dat", true);
+    xmlhttp.send();
+
+    function deltInn() {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+
+            var innhold = xmlhttp.responseText;
+            var linjer = innhold.split("\n");
+
+            for (var i = 0; i < linjer.length; i++) {
+                var felt = linjer[i].split(";");
+                var id = felt[0];
+                var navn = felt[1];
+                var dato = felt[2];
+                var plasser = felt[3];
+
+                var motevalg = document.createElement("option");
+                motevalg.value = felt[0];
+                motevalg.innerHTML = felt[1];
+                document.getElementById("liste").appendChild(motevalg);
+            }
+        }
+    }
+
+    function oppstart() {
+        document.getElementById("btnMeld").onclick = sendInfo
+    }
+
+    function sendInfo() {
+        var kode = document.getElementById("liste").value;
+        var navn = document.getElementById("navn").value;
+        var epost = document.getElementById("mail").value;
+
+        var url = "registrere.php?kode=" + kode + "&navn=" + navn + "&epost=" + epost;
+
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = sendt;
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+    }
+
+    function sendt() {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            document.getElementById("utskrift").innerHTML = "Registrert! Sjekk paameldinger.dat fila så bør informasjonen din ligge der.";
+        }
+    }
+</script>
+
+<body>
+    <p>Eksterne filer som brukes, merk at paameldinger.dat lastes ned til datamaskinen din.</br>
+        registrere.php(s) kan du se gjennom nettleseren.</p>
+    <ul>
+        <li><a href="http://ask.hiof.no/~mariusek/infprog/oblig5/oppgave2/paameldinger.dat">paameldinger.dat</a></li>
+        <li><a href="http://ask.hiof.no/~mariusek/infprog/oblig5/oppgave2/registrere.phps">registrere.phps</a></li>
+    </ul>
+
+    <p>Velg møte du ønsker å melde deg på</p>
+    <select id="liste"></select>
+    <p>Navn:</p>
+    <input type="text" id="navn" value="Testnavn Testsen" />
+    </br>
+    </br>
+    <p>E-post:</p>
+    <input type="text" id="mail" value="test@testmail.com" />
+    </br>
+    </br>
+    <button type="button" id="btnMeld" onClick=oppstart;>Submit</button>
+    <p id="utskrift"></p>
+</body>
