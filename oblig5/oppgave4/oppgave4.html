@@ -1,0 +1,49 @@
+<!doctype HTML>
+
+<!--
+Finn en selvvalgt ekstern kilde for XML eller JSON og lag et stilig prosjekt som benytter
+dataene. Merk at dataene skal lastes via en proxy. Minimumsversjonen kan lages enkel, men
+gjør gjerne mye ut av dataprosesseringen.
+-->
+
+<head>
+    <title>Oppgave 4</title>
+    <meta charset="utf-8" />
+    <script>
+        window.onload = oppstart;
+        var xmlhttp;
+
+        function oppstart() {
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = statusforandring;
+            xmlhttp.open("GET", "proxy.php", true);
+            xmlhttp.send();
+        }
+
+        function statusforandring() {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                var vaerData = xmlhttp.responseXML;
+                var sist = vaerData.getElementsByTagName("lastupdate")[0].childNodes[0].nodeValue;
+                var tekstvarsel = vaerData.getElementsByTagName("forecast")[0].getElementsByTagName("text")[0].getElementsByTagName("location")[0].getElementsByTagName("time")[0].getElementsByTagName("body")[0].childNodes[0].nodeValue;
+                var neste = vaerData.getElementsByTagName("nextupdate")[0].childNodes[0].nodeValue;
+                var locName = vaerData.getElementsByTagName("weatherdata")[0].getElementsByTagName("location")[0].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+                var land = vaerData.getElementsByTagName("weatherdata")[0].getElementsByTagName("location")[0].getElementsByTagName("country")[0].childNodes[0].nodeValue;
+                document.getElementById("otta").innerHTML = "Stedsnavn: " + "<b>" + locName + "</b>";
+                document.getElementById("tekstvarselogtimers").innerHTML += tekstvarsel + "</br>Siste varsel var: " + sist + "</br>Neste varsel er: " + neste;
+                document.getElementById("land").innerHTML = "Land: " + "<b>" + land + "</b>";
+
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <p>Eksterne filer som blir brukt</p>
+    <ul>
+        <li><a href="http://ask.hiof.no/~mariusek/infprog/oblig5/oppgave4/proxy.phps">PHP proxy</a></li>
+    </ul>
+
+    <p id="otta"></p>
+    <p id="land"></p>
+    <p id="tekstvarselogtimers"></p>
+</body>
